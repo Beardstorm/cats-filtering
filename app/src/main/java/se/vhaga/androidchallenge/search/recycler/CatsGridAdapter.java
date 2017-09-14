@@ -35,11 +35,6 @@ public class CatsGridAdapter extends RecyclerView.Adapter<CatsGridAdapter.CatVie
     @Override
     public CatViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.viewholder_cats, parent, false);
-
-//        int height = parent.getMeasuredWidth() / 2;
-//        ViewGroup.LayoutParams layoutParams = itemView.getLayoutParams();
-//        layoutParams.height = height;
-//        itemView.setLayoutParams(layoutParams);
         return new CatViewHolder(itemView);
     }
 

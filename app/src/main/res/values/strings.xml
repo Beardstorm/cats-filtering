@@ -1,4 +1,4 @@
 <resources>
-    <string name="app_name">CatsSearch</string>
-    <string name="search">Search</string>
+    <string name="app_name">CatsFilter</string>
+    <string name="search">Category filter</string>
 </resources>
