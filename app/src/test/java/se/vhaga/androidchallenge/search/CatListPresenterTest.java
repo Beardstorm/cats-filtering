@@ -6,6 +6,7 @@ import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
 import io.realm.Realm;
+import se.vhaga.androidchallenge.network.models.CatImageModel;
 
 import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.doReturn;
@@ -69,12 +70,21 @@ public class CatListPresenterTest {
 
     @Test
     public void onFilterChanged() throws Exception {
-
         String filter = "something";
 
         presenter.realm = realm;
         presenter.onFilterChanged(filter);
 
         verify(view).filterCats(realm, filter);
+    }
+
+    @Test
+    public void onCatClicked_showFullImage() throws Exception {
+        CatImageModel cat = new CatImageModel();
+        cat.setUrl("someurl");
+
+        presenter.onCatClicked(cat);
+
+        verify(view).showFullImage(cat.getUrl());
     }
 }

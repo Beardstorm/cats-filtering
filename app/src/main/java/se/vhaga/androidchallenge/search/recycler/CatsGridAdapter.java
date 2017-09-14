@@ -21,7 +21,8 @@ import se.vhaga.androidchallenge.network.models.CatImageModel;
 
 public class CatsGridAdapter extends RecyclerView.Adapter<CatsGridAdapter.CatViewHolder> {
 
-    List<CatImageModel> cats;
+    private List<CatImageModel> cats;
+    private OnCatClickedListener onCatClickListener;
 
     public CatsGridAdapter() {
         cats = new ArrayList<>();
@@ -32,6 +33,10 @@ public class CatsGridAdapter extends RecyclerView.Adapter<CatsGridAdapter.CatVie
         this.cats.addAll(cats);
     }
 
+    public void setOnCatClickListener(OnCatClickedListener onCatClickListener) {
+        this.onCatClickListener = onCatClickListener;
+    }
+
     @Override
     public CatViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.viewholder_cats, parent, false);
@@ -40,10 +45,19 @@ public class CatsGridAdapter extends RecyclerView.Adapter<CatsGridAdapter.CatVie
 
     @Override
     public void onBindViewHolder(CatViewHolder holder, int position) {
-        CatImageModel cat = cats.get(position);
+        final CatImageModel cat = cats.get(position);
         holder.setId(cat.getId());
         holder.setCategory(cat.getCategory());
         holder.setImage(cat.getUrl());
+
+        if (onCatClickListener != null) {
+            holder.itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    onCatClickListener.onCatClicked(cat);
+                }
+            });
+        }
     }
 
     @Override
@@ -54,9 +68,9 @@ public class CatsGridAdapter extends RecyclerView.Adapter<CatsGridAdapter.CatVie
 
     class CatViewHolder extends RecyclerView.ViewHolder {
 
-        TextView labelId;
-        TextView labelCategory;
-        ImageView image;
+        private TextView labelId;
+        private TextView labelCategory;
+        private ImageView image;
 
         public CatViewHolder(View itemView) {
             super(itemView);
@@ -76,5 +90,9 @@ public class CatsGridAdapter extends RecyclerView.Adapter<CatsGridAdapter.CatVie
         public void setImage(String url) {
             Picasso.with(itemView.getContext()).load(url).into(image);
         }
+    }
+
+    public interface OnCatClickedListener {
+        void onCatClicked(CatImageModel cat);
     }
 }

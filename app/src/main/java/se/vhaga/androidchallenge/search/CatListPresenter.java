@@ -1,6 +1,7 @@
 package se.vhaga.androidchallenge.search;
 
 import io.realm.Realm;
+import se.vhaga.androidchallenge.network.models.CatImageModel;
 
 /**
  * Created by vhaga on 2017-09-14.
@@ -50,5 +51,9 @@ public class CatListPresenter {
 
     public void onFilterChanged(String string) {
         view.filterCats(realm, string);
+    }
+
+    public void onCatClicked(CatImageModel cat) {
+        view.showFullImage(cat.getUrl());
     }
 }

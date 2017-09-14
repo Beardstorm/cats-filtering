@@ -15,4 +15,5 @@ interface CatListView {
     void hideLoadingIndicator();
     void loadCats(Realm realm);
     void filterCats(Realm realm, String string);
+    void showFullImage(String url);
 }

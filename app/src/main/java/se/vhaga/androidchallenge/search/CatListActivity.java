@@ -8,8 +8,11 @@ import android.support.v7.widget.RecyclerView;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
@@ -32,6 +35,7 @@ public class CatListActivity extends Activity implements CatListView {
     private CatsGridAdapter catsAdapter;
     private RecyclerView catsRecycler;
     private ProgressBar loadingIndicator;
+    private ImageView fullImage;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,6 +45,8 @@ public class CatListActivity extends Activity implements CatListView {
         fieldSearch = findViewById(R.id.searchField);
         catsRecycler = findViewById(R.id.catsRecycler);
         loadingIndicator = findViewById(R.id.loadingIndicator);
+        fullImage = findViewById(R.id.fullImage);
+        fullImage.setOnClickListener(onFullImageClickedListener);
 
         initRecycler();
         initFieldFilters();
@@ -57,6 +63,8 @@ public class CatListActivity extends Activity implements CatListView {
 
     private void initRecycler() {
         catsAdapter = new CatsGridAdapter();
+        catsAdapter.setOnCatClickListener(onCatClickListener);
+
         catsRecycler.setAdapter(catsAdapter);
 
         GridLayoutManager gridLayoutManager = new GridLayoutManager(this, NUM_GRID_COLUMNS, OrientationHelper.VERTICAL, false);
@@ -141,4 +149,24 @@ public class CatListActivity extends Activity implements CatListView {
         catsAdapter.setCats(cats);
         catsAdapter.notifyDataSetChanged();
     }
+
+    @Override
+    public void showFullImage(String url) {
+        Picasso.with(this).load(url).into(fullImage);
+        fullImage.setVisibility(View.VISIBLE);
+    }
+
+    private View.OnClickListener onFullImageClickedListener = new View.OnClickListener() {
+        @Override
+        public void onClick(View view) {
+            fullImage.setVisibility(View.GONE);
+        }
+    };
+
+    private CatsGridAdapter.OnCatClickedListener onCatClickListener = new CatsGridAdapter.OnCatClickedListener() {
+        @Override
+        public void onCatClicked(CatImageModel cat) {
+            presenter.onCatClicked(cat);
+        }
+    };
 }
