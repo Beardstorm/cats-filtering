@@ -7,7 +7,7 @@ import io.realm.Realm;
 /**
  * Created by vhaga on 2017-09-14.
  */
-public class MyApplication extends Application {
+public class CatsApplication extends Application {
 
     @Override
     public void onCreate() {
