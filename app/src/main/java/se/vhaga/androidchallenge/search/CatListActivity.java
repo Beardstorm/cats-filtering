@@ -98,6 +98,20 @@ public class CatListActivity extends Activity implements CatListView {
     }
 
     @Override
+    public void executePersistJsonTask(String url) {
+
+        GetAndPersistJsonTask.OnTaskCompletedListener onTaskCompletedListener = new GetAndPersistJsonTask.OnTaskCompletedListener() {
+            @Override
+            public void onTaskCompleted() {
+                presenter.onPersistTaskCompleted();
+            }
+        };
+
+        GetAndPersistJsonTask persistJsonTask = new GetAndPersistJsonTask(url, onTaskCompletedListener);
+        persistJsonTask.execute();
+    }
+
+    @Override
     public void showLoadingIndicator() {
         loadingIndicator.setVisibility(View.VISIBLE);
     }

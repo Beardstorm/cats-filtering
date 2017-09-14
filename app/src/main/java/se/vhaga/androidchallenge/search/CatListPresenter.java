@@ -10,9 +10,9 @@ public class CatListPresenter {
 
     private static final int ASYNC_TASKS_STARTED = 3;
 
-    private CatListView view;
-    private Realm realm;
-    private int tasksFinished;
+    protected CatListView view;
+    protected Realm realm;
+    protected int tasksFinished;
 
     public CatListPresenter(CatListView view) {
         this.view = view;
@@ -21,28 +21,15 @@ public class CatListPresenter {
     public void onCreate() {
 
         view.clearRealmInstance();
-
         realm = view.getRealmInstance();
 
         String urlHats = "https://github.com/Beardstorm/cats-search/blob/master/resources/cats-hats.json?raw=true";
         String urlSinks = "https://github.com/Beardstorm/cats-search/blob/master/resources/cats-sinks.json?raw=true";
         String urlBoxes = "https://github.com/Beardstorm/cats-search/blob/master/resources/cats-boxes.json?raw=true";
 
-        GetAndPersistJsonTask.OnTaskCompletedListener onTaskCompletedListener = new GetAndPersistJsonTask.OnTaskCompletedListener() {
-            @Override
-            public void onTaskCompleted() {
-                onPersistTaskCompleted();
-            }
-        };
-
-        GetAndPersistJsonTask getCatsInHatsTask = new GetAndPersistJsonTask(urlHats, onTaskCompletedListener);
-        GetAndPersistJsonTask getCatsInBoxesTask = new GetAndPersistJsonTask(urlSinks, onTaskCompletedListener);
-        GetAndPersistJsonTask getCatsInSinksTask = new GetAndPersistJsonTask(urlBoxes, onTaskCompletedListener);
-
-        getCatsInHatsTask.execute();
-        getCatsInBoxesTask.execute();
-        getCatsInSinksTask.execute();
-
+        view.executePersistJsonTask(urlHats);
+        view.executePersistJsonTask(urlSinks);
+        view.executePersistJsonTask(urlBoxes);
         view.showLoadingIndicator();
     }
 

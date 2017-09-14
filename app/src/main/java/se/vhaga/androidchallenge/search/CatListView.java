@@ -10,9 +10,9 @@ interface CatListView {
 
     Realm getRealmInstance();
     void clearRealmInstance();
+    void executePersistJsonTask(String urlHats);
     void showLoadingIndicator();
     void hideLoadingIndicator();
     void loadCats(Realm realm);
-
     void filterCats(Realm realm, String string);
 }
