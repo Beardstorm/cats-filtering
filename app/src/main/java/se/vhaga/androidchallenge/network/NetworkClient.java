@@ -29,7 +29,7 @@ public class NetworkClient {
 
         String result = null;
         try (Response response = client.newCall(request).execute()) {
-            result = response.body().toString();
+            result = response.body().string();
         } catch (IOException exception) {
             Log.e("NetworkClient", exception.getMessage());
         }
