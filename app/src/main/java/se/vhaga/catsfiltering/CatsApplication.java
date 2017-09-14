@@ -1,4 +1,4 @@
-package se.vhaga.androidchallenge;
+package se.vhaga.catsfiltering;
 
 import android.app.Application;
 

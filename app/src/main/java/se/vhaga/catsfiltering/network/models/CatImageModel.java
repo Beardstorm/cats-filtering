@@ -1,4 +1,4 @@
-package se.vhaga.androidchallenge.network.models;
+package se.vhaga.catsfiltering.network.models;
 
 import io.realm.RealmObject;
 

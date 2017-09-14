@@ -1,4 +1,4 @@
-package se.vhaga.androidchallenge.network;
+package se.vhaga.catsfiltering.network;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -8,7 +8,7 @@ import com.google.gson.reflect.TypeToken;
 
 import java.util.List;
 
-import se.vhaga.androidchallenge.network.models.CatImageModel;
+import se.vhaga.catsfiltering.network.models.CatImageModel;
 
 /**
  * Created by vhaga on 2017-09-14.

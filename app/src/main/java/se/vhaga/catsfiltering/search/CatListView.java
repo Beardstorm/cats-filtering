@@ -1,4 +1,4 @@
-package se.vhaga.androidchallenge.search;
+package se.vhaga.catsfiltering.search;
 
 import io.realm.Realm;
 

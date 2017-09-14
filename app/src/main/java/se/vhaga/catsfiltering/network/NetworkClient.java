@@ -1,4 +1,4 @@
-package se.vhaga.androidchallenge.network;
+package se.vhaga.catsfiltering.network;
 
 import android.util.Log;
 

@@ -1,4 +1,4 @@
-package se.vhaga.androidchallenge.search;
+package se.vhaga.catsfiltering.search;
 
 import android.os.AsyncTask;
 
@@ -6,9 +6,9 @@ import java.util.List;
 
 import io.realm.Realm;
 import io.realm.RealmConfiguration;
-import se.vhaga.androidchallenge.network.CatsResponseParser;
-import se.vhaga.androidchallenge.network.NetworkClient;
-import se.vhaga.androidchallenge.network.models.CatImageModel;
+import se.vhaga.catsfiltering.network.CatsResponseParser;
+import se.vhaga.catsfiltering.network.NetworkClient;
+import se.vhaga.catsfiltering.network.models.CatImageModel;
 
 /**
  * Created by vhaga on 2017-09-14.

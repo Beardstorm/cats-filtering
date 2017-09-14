@@ -1,4 +1,4 @@
-package se.vhaga.androidchallenge.search.recycler;
+package se.vhaga.catsfiltering.search.recycler;
 
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -12,8 +12,8 @@ import com.squareup.picasso.Picasso;
 import java.util.ArrayList;
 import java.util.List;
 
-import se.vhaga.androidchallenge.R;
-import se.vhaga.androidchallenge.network.models.CatImageModel;
+import se.vhaga.catsfiltering.R;
+import se.vhaga.catsfiltering.network.models.CatImageModel;
 
 /**
  * Created by vhaga on 2017-09-14.

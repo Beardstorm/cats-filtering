@@ -1,4 +1,4 @@
-package se.vhaga.androidchallenge.search;
+package se.vhaga.catsfiltering.search;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -6,7 +6,7 @@ import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
 import io.realm.Realm;
-import se.vhaga.androidchallenge.network.models.CatImageModel;
+import se.vhaga.catsfiltering.network.models.CatImageModel;
 
 import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.doReturn;

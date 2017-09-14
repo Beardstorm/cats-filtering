@@ -1,4 +1,4 @@
-package se.vhaga.androidchallenge.search;
+package se.vhaga.catsfiltering.search;
 
 import android.app.Activity;
 import android.os.Bundle;
@@ -20,10 +20,10 @@ import io.realm.Realm;
 import io.realm.RealmConfiguration;
 import io.realm.RealmResults;
 import io.realm.Sort;
-import se.vhaga.androidchallenge.R;
-import se.vhaga.androidchallenge.network.models.CatImageModel;
-import se.vhaga.androidchallenge.search.recycler.CatsGridAdapter;
-import se.vhaga.androidchallenge.search.recycler.GridItemDecoration;
+import se.vhaga.catsfiltering.R;
+import se.vhaga.catsfiltering.network.models.CatImageModel;
+import se.vhaga.catsfiltering.search.recycler.CatsGridAdapter;
+import se.vhaga.catsfiltering.search.recycler.GridItemDecoration;
 
 public class CatListActivity extends Activity implements CatListView {
 
