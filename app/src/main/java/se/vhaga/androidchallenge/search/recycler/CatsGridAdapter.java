@@ -27,7 +27,7 @@ public class CatsGridAdapter extends RecyclerView.Adapter<CatsGridAdapter.CatVie
         cats = new ArrayList<>();
     }
 
-    public void addCats(List<CatImageModel> cats) {
+    public void setCats(List<CatImageModel> cats) {
         this.cats.clear();
         this.cats.addAll(cats);
     }
