@@ -24,9 +24,11 @@ import se.vhaga.catsfiltering.R;
 import se.vhaga.catsfiltering.network.models.CatImageModel;
 import se.vhaga.catsfiltering.search.recycler.CatsGridAdapter;
 import se.vhaga.catsfiltering.search.recycler.GridItemDecoration;
+import se.vhaga.catsfiltering.utility.PreferencesHelper;
 
 public class CatListActivity extends Activity implements CatListView {
 
+    private static final String PREFERENCES_KEY_HAS_PERSISTED_JSON = "key_has_persisted_json";
     private static final int NUM_GRID_COLUMNS = 2;
 
     private CatListPresenter presenter;
@@ -154,6 +156,16 @@ public class CatListActivity extends Activity implements CatListView {
     public void showFullImage(String url) {
         Picasso.with(this).load(url).into(fullImage);
         fullImage.setVisibility(View.VISIBLE);
+    }
+
+    @Override
+    public boolean hasPersistedData() {
+        return PreferencesHelper.getBoolean(this, PREFERENCES_KEY_HAS_PERSISTED_JSON);
+    }
+
+    @Override
+    public void setHasPersistedData() {
+        PreferencesHelper.putBoolean(this, PREFERENCES_KEY_HAS_PERSISTED_JSON, true);
     }
 
     private View.OnClickListener onFullImageClickedListener = new View.OnClickListener() {

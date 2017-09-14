@@ -16,4 +16,6 @@ interface CatListView {
     void loadCats(Realm realm);
     void filterCats(Realm realm, String string);
     void showFullImage(String url);
+    boolean hasPersistedData();
+    void setHasPersistedData();
 }

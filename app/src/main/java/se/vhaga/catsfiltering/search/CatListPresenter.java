@@ -21,6 +21,12 @@ public class CatListPresenter {
 
     public void onCreate() {
 
+        if (view.hasPersistedData()) {
+            realm = view.getRealmInstance();
+            view.loadCats(realm);
+            return;
+        }
+
         view.clearRealmInstance();
         realm = view.getRealmInstance();
 
@@ -47,6 +53,7 @@ public class CatListPresenter {
 
         view.hideLoadingIndicator();
         view.loadCats(realm);
+        view.setHasPersistedData();
     }
 
     public void onFilterChanged(String string) {

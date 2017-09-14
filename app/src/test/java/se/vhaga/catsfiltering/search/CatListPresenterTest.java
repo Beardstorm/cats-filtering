@@ -10,6 +10,7 @@ import se.vhaga.catsfiltering.network.models.CatImageModel;
 
 import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.doReturn;
+import static org.mockito.Mockito.never;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.verifyNoMoreInteractions;
@@ -35,13 +36,28 @@ public class CatListPresenterTest {
     }
 
     @Test
-    public void onCreate_initRecycler() throws Exception {
+    public void onCreate_hasNotPersistedDataBefore_executeTasks() throws Exception {
+        doReturn(false).when(view).hasPersistedData();
         presenter.onCreate();
 
-        verify(view).clearRealmInstance();
         verify(view).getRealmInstance();
+        verify(view).clearRealmInstance();
         verify(view, times(3)).executePersistJsonTask(anyString());
         verify(view).showLoadingIndicator();
+    }
+
+    @Test
+    public void onCreate_hasPersistedDataBefore_loadCats() throws Exception {
+        doReturn(true).when(view).hasPersistedData();
+        presenter.realm = realm;
+
+        presenter.onCreate();
+
+        verify(view).getRealmInstance();
+        verify(view).loadCats(realm);
+        verify(view, never()).clearRealmInstance();
+        verify(view, never()).executePersistJsonTask(anyString());
+        verify(view, never()).showLoadingIndicator();
     }
 
     @Test
